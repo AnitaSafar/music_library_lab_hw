@@ -7,4 +7,4 @@ class TestArtist(unittest.TestCase):
         self.artist = Artist("Queen")
 
     def test_artist_has_name(self):
-        self.assertEqual("Queen", self.artist.name)
+        self.assertEqual("Queen", self.artist.artist_name)
