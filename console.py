@@ -20,10 +20,13 @@ artist_repository.save(artist1)
 artist2 = Artist("Queen")
 artist_repository.save(artist2)
 
-album_repository.select_all()
+albums = album_repository.select_all()
+for album in albums:
+    print(album.__dict__)
 
-artist_repository.select_all()
-
+artists = artist_repository.select_all()
+for artist in artists:
+    print(artist.__dict___)
 
 pdb.set_trace()
 

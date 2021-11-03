@@ -4,8 +4,8 @@ from db.run_sql import run_sql
 from models.album import Album
 
 def save(album):
-    sql = "INSERT INTO albums (title, genre, artist) VALUES (%s, %s, %s) RETURNING *"
-    values = [album.title, album.genre, album.artist]
+    sql = "INSERT INTO albums (title, genre, name_of_artist) VALUES (%s, %s, %s) RETURNING *"
+    values = [album.title, album.genre, album.artist.artist_name]
 
     results = run_sql(sql, values)
     id = results[0]["id"]
@@ -38,3 +38,13 @@ def select(id):
         album = Album(result["title"], result["genre"], result["artist"])
 
     return album
+
+def delete(id):
+    sql = "DELETE FROM albums WHERE id = %s"
+    values = [id]
+    run_sql(sql, values)
+
+def update(album):
+    sql = "UPDATE albums SET (title, genre, artist) = (%s, %s, %s) WHERE id = %s"
+    values = [album.title, album.genre, album.artist]
+    run_sql(sql, values)
